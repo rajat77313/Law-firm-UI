@@ -1,0 +1,30 @@
+.user_details_box>* {
+    color: #383838;
+
+}
+
+.title_box {
+    padding: 30px;
+}
+
+.timeline_box {
+    border: 2px solid #578E7E;
+    margin: 30px;
+    border-radius: 10px;
+
+}
+
+.verticaltimeline_ {
+    margin: 0px 20px !important;
+}
+
+.timeline_item_text> span {
+    display: inline-block;
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1.1rem;
+}
+
+/* 578E7E */

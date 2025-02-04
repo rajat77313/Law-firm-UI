@@ -1,0 +1,90 @@
+.form_overlay_parent {
+    position: relative;
+}
+
+.form_overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    min-width: 100vw;
+    min-height: 70vh;
+    z-index: 999;
+    border: 1px solid;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.form_parent {
+    border: 1px solid;
+    border-radius: 10px;
+    min-height: 400px;
+    min-width: 350px;
+    background: #fff;
+}
+
+.form_parent>* {
+    color: #383838;
+}
+
+.form_title {
+    padding: 15px 20px;
+    border-bottom: 1px solid #578E7E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form_title_span {
+    font-weight: bold;
+}
+
+
+/* ------------------------------ */
+
+.form {
+    padding: 15px;
+}
+
+.input_field {
+    display: grid;
+    row-gap: 5px;
+    margin-bottom: 8px;
+}
+
+.label_style {
+    font-size: 0.75rem;
+}
+
+.input_p {
+    min-height: 35px;
+    padding: 5px;
+    background: transparent;
+    border: 0.5px solid rgba(156, 89, 111, 0.5);
+    border-radius: 5px;
+    color: #383838;
+}
+
+.form_button {
+    margin-top: 25px;
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 20px;
+}
+
+.create_user_btn,
+.cancel_btn {
+    background-color: #578E7E;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cancel_btn {
+    background: #383838;
+}
