@@ -27,7 +27,7 @@ const HearingForm = ({ title, parentRow, rowDetails, clickedCancel, clickedOk })
 
   const submitForm = async (e) => {
     e.preventDefault();
-    const url = `${url_prefix}/admin/`
+    let url = `${url_prefix}/admin/`
     // let url = "https:/law-firm-be.vercel.app/admin/"
     let identifier = ''
     if (title === 'Edit Hearing Details') {
