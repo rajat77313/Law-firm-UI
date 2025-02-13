@@ -9,6 +9,8 @@ import Paymentform from "./paymentform";
 import HearingForm from "./hearingform";
 import { FaEdit } from "react-icons/fa";
 import Snackbar from "./snackbar";
+import { url_prefix } from "../utils/constants";
+
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -105,7 +107,7 @@ const TableView = ({ users }) => {
   };
 
   const getBottomTableData = async (postfix, identifier) => {
-    const url = `https:/law-firm-be.vercel.app/admin/${postfix}?clientId=${selectedRow[0]._id}`;
+    const url = `${url_prefix}/admin/${postfix}?clientId=${selectedRow[0]._id}`;
     try {
       const response = await fetch(url, {
         method: "GET", headers: { "Content-Type": "application/json" }

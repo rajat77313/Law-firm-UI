@@ -2,6 +2,7 @@
 import styles from "@/app/page.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { url_prefix } from "../utils/constants";
 
 const Login = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const Login = () => {
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    const url = "https://law-firm-be.vercel.app/loginuser";
+    const url = `${url_prefix}/loginuser`;
 
     try {
       const response = await fetch(url, {

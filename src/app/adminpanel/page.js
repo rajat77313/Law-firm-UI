@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import TableView from "../components/table";
 import Formpage from "../components/formpage";
 import Snackbar from "../components/snackbar";
+import { url_prefix } from "../utils/constants";
 
 const AdminPanel = () => {
   const router = useRouter();
@@ -37,7 +38,8 @@ const AdminPanel = () => {
   }
 
   const getUsers = async () => {
-    const url = "https:/law-firm-be.vercel.app/admin/getclients";
+    const url = `${url_prefix}/admin/getclients`
+    // const url = "https:/law-firm-be.vercel.app/admin/getclients";
     try {
       const response = await fetch(url, {
         method: "GET", headers: { "Content-Type": "application/json" }
@@ -55,7 +57,8 @@ const AdminPanel = () => {
 
   const createNewUser = async (formData) => {
     console.log('Form data in admin', formData)
-    const url = "https:/law-firm-be.vercel.app/admin/createclient";
+    const url = `${url_prefix}/admin/createclient`
+    // const url = "https:/law-firm-be.vercel.app/admin/createclient";
     try {
       const response = await fetch(url, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ formData }),

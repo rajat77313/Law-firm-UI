@@ -7,6 +7,7 @@ import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeli
 import "react-vertical-timeline-component/style.min.css";
 import Image from "next/image";
 import law from "../../../public/law.svg";
+import { url_prefix } from "../utils/constants";
 
 const UserHome = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const UserHome = () => {
   const getUserHearingDetails = async () => {
     if (!useremail) return;
 
-    const url = `https://law-firm-be.vercel.app/user/getuserhearingdata?email=${useremail}`;
+    const url = `${url_prefix}/user/getuserhearingdata?email=${useremail}`;
     try {
       const response = await fetch(url, {
         method: "GET",

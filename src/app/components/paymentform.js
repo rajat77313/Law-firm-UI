@@ -2,6 +2,7 @@
 import { useState } from "react";
 import styles from "../styles/formpage.module.css";
 import Snackbar from "./snackbar";
+import { url_prefix } from "../utils/constants";
 
 const Paymentform = ({
   title,
@@ -33,7 +34,8 @@ const Paymentform = ({
 
   const submitForm = async (e) => {
     e.preventDefault();
-    let url = "https:/law-firm-be.vercel.app/admin/";
+    const url = `${url_prefix}/admin/`
+    // let url = "https:/law-firm-be.vercel.app/admin/";
     let identifier = "";
     if (title === "Edit Payment Details") {
       identifier = "E";
