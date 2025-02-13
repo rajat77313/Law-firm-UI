@@ -222,7 +222,7 @@ const TableView = ({ users }) => {
 
       <div
         className="ag-theme-alpine"
-        style={{ width: "100%", height: "40vh" }}
+        style={{ width: "100%", height: "40vh", overflow: 'auto', resize: 'vertical' }}
       >
         <AgGridReact
           rowData={users}

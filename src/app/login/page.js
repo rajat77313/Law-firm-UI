@@ -1,12 +1,16 @@
 "use client";
 import styles from "@/app/page.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
-  localStorage.clear()
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+    localStorage.clear();
+  }, []);
 
   const [user, userData] = useState({
     email: "",
@@ -14,18 +18,13 @@ const Login = () => {
   });
 
   const handleFieldChange = (e) => {
-    const field = e.target.name;
-    const value = e.target.value;
-
-    userData({ ...user, [field]: value });
+    const { name, value } = e.target;
+    userData({ ...user, [name]: value });
   };
 
-  const formSubmit = async (e, name) => {
-    // showLoaderFn(true);
+  const formSubmit = async (e) => {
     e.preventDefault();
-    // router.push('/adminpanel')
-    // const url = `${url_prefix}/${formName}`;
-    const url = 'https:/law-firm-be.vercel.app/loginuser'
+    const url = "https://law-firm-be.vercel.app/loginuser";
 
     try {
       const response = await fetch(url, {
@@ -33,57 +32,57 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user }),
       });
+
       const result = await response.json();
-      // showLoaderFn(false);
+
       if (response.ok) {
-        console.log(result)
+        console.log(result);
         if (result.user.isAdmin) {
-          router.push('/adminpanel')
+          localStorage.setItem("useremail", user.email);
+          localStorage.setItem("isAdmin", true);
+          router.push("/adminpanel");
         } else {
-          localStorage.setItem('useremail', user.email)
-          router.push('/userhomepage')
+          if (isClient) {
+            localStorage.setItem("useremail", user.email);
+            localStorage.setItem("isAdmin", false);
+          }
+          router.push("/userhomepage");
         }
       } else if (response.status === 401) {
-        msgFn({ message: result.message, type: "F" });
-        setTimeout(() => {
-          msgFn({ type: "" });
-        }, 3000);
+        alert(result.message); // Display error message
       }
-    } catch (error) { }
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    }
   };
 
+  if (!isClient) {
+    return null; // Prevents rendering during SSR
+  }
+
   return (
-    <div>
-      <div className={styles.login_form_main_box}>
-        <div className={styles.form_box}>
-          <h2 style={{ color: "#383838" }}>Please Login To your Account.</h2>
-          <form
-            className={styles.form_align}
-            onSubmit={(e) => formSubmit(e, "login")}
-          >
-            <input
-              type="text"
-              name="email"
-              value={user.email}
-              onChange={handleFieldChange}
-              placeholder="Email (required)"
-            />
-            <input
-              name="password"
-              type="password"
-              value={user.password}
-              onChange={handleFieldChange}
-              placeholder="Password (required)"
-              id=""
-            />
-            <button
-              disabled={!user.email || !user.password}
-              className={styles.login_btn}
-            >
-              Sign In
-            </button>
-          </form>
-        </div>
+    <div className={styles.login_form_main_box}>
+      <div className={styles.form_box}>
+        <h2 style={{ color: "#383838" }}>Please Login To your Account.</h2>
+        <form className={styles.form_align} onSubmit={formSubmit}>
+          <input
+            type="text"
+            name="email"
+            value={user.email}
+            onChange={handleFieldChange}
+            placeholder="Email (required)"
+          />
+          <input
+            name="password"
+            type="password"
+            value={user.password}
+            onChange={handleFieldChange}
+            placeholder="Password (required)"
+          />
+          <button disabled={!user.email || !user.password} className={styles.login_btn}>
+            Sign In
+          </button>
+        </form>
       </div>
     </div>
   );

@@ -7,8 +7,8 @@ const HearingForm = ({ title, parentRow, rowDetails, clickedCancel, clickedOk })
   console.log('inside form ', rowDetails, parentRow)
   const [formData, setFormData] = useState({
     clientId: parentRow[0]._id,
-    hearing_date: rowDetails.length ? rowDetails?.[0]?.hearing_date : '',
-    next_date: rowDetails.length ? rowDetails?.[0]?.next_date : '',
+    hearing_date: rowDetails.length ? rowDetails?.[0]?.hearing_date : new Date().toISOString().split("T")[0],
+    next_date: rowDetails.length ? rowDetails?.[0]?.next_date : new Date().toISOString().split("T")[0],
     court_order: rowDetails.length ? rowDetails?.[0]?.court_order : '',
     row_id: rowDetails.length ? rowDetails?.[0]?._id : '-'
   });

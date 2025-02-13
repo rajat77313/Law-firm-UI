@@ -5,11 +5,11 @@ export default function Home() {
   return (
     <>
     <div>
-    <div style={{marginTop: '20px', display: 'flex', justifyContent: 'flex-end', padding: '0px 25px'}}>
+    {/* <div style={{marginTop: '20px', display: 'flex', justifyContent: 'flex-end', padding: '0px 25px'}}>
           <Link href={"/login"}>
             <span className={styles.login_btn}>Login</span>{" "}
           </Link>
-        </div>
+        </div> */}
     </div>
       <div className={styles.home_box}>
 

@@ -15,7 +15,7 @@ const Paymentform = ({
 
   const [formData, setFormData] = useState({
     clientId: parentRow?.[0]?._id || "",
-    payment_date: rowDetails.length ? rowDetails?.[0]?.payment_date : "",
+    payment_date: rowDetails.length ? rowDetails?.[0]?.payment_date : new Date().toISOString().split("T")[0],
     payment_amount: rowDetails.length ? rowDetails?.[0]?.payment_amount : "",
     payment_via: rowDetails.length ? rowDetails?.[0]?.payment_via : "",
     row_id: rowDetails.length ? rowDetails?.[0]._id : "-",

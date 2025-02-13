@@ -17,15 +17,15 @@
 .header_box {
   display: flex;
   justify-content: space-between;
-  ;
   align-items: center;
-  padding: 40px;
+  padding: 10px;
   border-bottom: 1px solid #578E7E;
   margin: 0px 10px;
 }
 
 .logo_text {
   font-size: 2.5rem;
+  cursor: pointer;
 }
 
 .login_btn {
