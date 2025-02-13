@@ -34,8 +34,8 @@ const Login = () => {
         console.log(result);
 
         if (isClient) {
-          localStorage.setItem("useremail", user.email);
-          localStorage.setItem("isAdmin", result.user.isAdmin ? "true" : "false");
+          // localStorage.setItem("useremail", user.email);
+          // localStorage.setItem("isAdmin", result.user.isAdmin ? "true" : "false");
         }
 
         router.push(result.user.isAdmin ? "/adminpanel" : "/userhomepage");
