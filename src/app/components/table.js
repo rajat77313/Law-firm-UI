@@ -133,7 +133,7 @@ const TableView = ({ users }) => {
     } else {
       hearingFormVisibilityFn(true)
     }
-  }
+  };
 
   //Add snackbar here
   const messageForm = (res) => {
