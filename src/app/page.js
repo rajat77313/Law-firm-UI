@@ -14,7 +14,7 @@ export default function Home() {
       <div className={styles.home_box}>
 
         <div className={styles.main_text}>
-          <h1>Legal Services In Jammu</h1>
+          <h1>Legal Services In Jammu and Kashmir</h1>
           <h2>
             Powerful Advocacy. Proven Results. Your Trusted Partners in Legal
             Success.
