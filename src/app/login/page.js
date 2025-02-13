@@ -9,7 +9,7 @@ const Login = () => {
 
   useEffect(() => {
     setIsClient(true);
-    localStorage.clear();
+    // localStorage.clear();
   }, []);
 
   const [user, userData] = useState({
