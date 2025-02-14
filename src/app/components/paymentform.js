@@ -3,6 +3,13 @@ import { useState } from "react";
 import styles from "../styles/formpage.module.css";
 import Snackbar from "./snackbar";
 import { url_prefix } from "../utils/constants";
+import BeatLoader from "react-spinners/BeatLoader";
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const Paymentform = ({
   title,
@@ -13,7 +20,7 @@ const Paymentform = ({
 }) => {
   console.log(rowDetails);
   const payment_via_array = ["Cash", "UPI", "Cheque"];
-
+  const [showLoader, showLoaderFn] = useState(false);
   const [formData, setFormData] = useState({
     clientId: parentRow?.[0]?._id || "",
     payment_date: rowDetails.length ? rowDetails?.[0]?.payment_date : new Date().toISOString().split("T")[0],
@@ -33,9 +40,9 @@ const Paymentform = ({
   };
 
   const submitForm = async (e) => {
+    showLoaderFn(true);
     e.preventDefault();
     let url = `${url_prefix}/admin/`
-    // let url = "https:/law-firm-be.vercel.app/admin/";
     let identifier = "";
     if (title === "Edit Payment Details") {
       identifier = "E";
@@ -52,6 +59,7 @@ const Paymentform = ({
         body: JSON.stringify({ formData }),
       });
       const result = await response.json();
+      showLoaderFn(false);
       if (response.ok) {
         clickedOk({ message: `Payment Successfully ${identifier === 'A' ? 'Added' : 'Updated'}` });
       } else {
@@ -77,6 +85,7 @@ const Paymentform = ({
 
   return (
     <div className={styles.form_overlay_parent}>
+
       <div className={styles.form_overlay}>
         {showSnackbar.show ?
           <>
@@ -157,6 +166,15 @@ const Paymentform = ({
                 Cancel
               </button>
             </div>
+            <div style={{ zIndex: "2", paddingBottom: '20px', display: 'flex', justifyContent: 'center' }}>
+                {showLoader ? (
+                  <>
+                    <div className={styles.loader}>
+                      <BeatLoader color="#1B1833" loading={true} cssOverride={override} size={25} aria-label="Loading Spinner" data-testid="loader" />
+                    </div>
+                  </>
+                ) : null}
+              </div>
           </form>
         </div>
       </div>

@@ -80,3 +80,14 @@
     flex: 1;
     display: grid;
 }
+
+@media(max-width: 700px) {
+    .bottom_grids {
+        flex-direction: column;
+        row-gap: 40px;
+    }
+
+    .main_panel > * {
+        font-size: 10px !important;
+    }
+}

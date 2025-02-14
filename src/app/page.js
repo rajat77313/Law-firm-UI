@@ -132,6 +132,14 @@ export default function Home() {
             laudantium nesciunt voluptates?
           </h4>
         </div>
+
+        <div className={styles.our_clients}>
+          <h1>Our Reviews</h1>
+          <br /><br />
+          <div>
+            Horizontal Carasoul can be added
+          </div>
+        </div>
       </div>
     </>
   );

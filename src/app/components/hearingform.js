@@ -3,9 +3,16 @@ import { useState } from "react";
 import styles from "../styles/formpage.module.css";
 import Snackbar from "./snackbar";
 import { url_prefix } from "../utils/constants";
+import BeatLoader from "react-spinners/BeatLoader";
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const HearingForm = ({ title, parentRow, rowDetails, clickedCancel, clickedOk }) => {
-  console.log('inside form ', rowDetails, parentRow)
+  const [showLoader, showLoaderFn] = useState(false);
   const [formData, setFormData] = useState({
     clientId: parentRow[0]._id,
     hearing_date: rowDetails.length ? rowDetails?.[0]?.hearing_date : new Date().toISOString().split("T")[0],
@@ -26,6 +33,7 @@ const HearingForm = ({ title, parentRow, rowDetails, clickedCancel, clickedOk })
   };
 
   const submitForm = async (e) => {
+    showLoaderFn(true);
     e.preventDefault();
     let url = `${url_prefix}/admin/`
     // let url = "https:/law-firm-be.vercel.app/admin/"
@@ -43,7 +51,7 @@ const HearingForm = ({ title, parentRow, rowDetails, clickedCancel, clickedOk })
       });
       const result = await response.json();
       if (response.ok) {
-        console.log(result)
+        showLoaderFn(false);
         clickedOk({ message: `Hearing Details Successfully ${identifier === 'A' ? 'Added' : 'Updated'}` });
       } else {
         showFailure()
@@ -142,6 +150,16 @@ const HearingForm = ({ title, parentRow, rowDetails, clickedCancel, clickedOk })
               >
                 Cancel
               </button>
+            </div>
+
+            <div style={{ zIndex: "2", display: 'flex', justifyContent: 'center' }}>
+              {showLoader ? (
+                <>
+                  <div className={styles.loader}>
+                    <BeatLoader color="#1B1833" loading={true} cssOverride={override} size={25} aria-label="Loading Spinner" data-testid="loader" />
+                  </div>
+                </>
+              ) : null}
             </div>
 
           </form>
